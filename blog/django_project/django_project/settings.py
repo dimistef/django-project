@@ -31,13 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    "blog.apps.BlogConfig", # new
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "blog.apps.BlogConfig",
+    "accounts.apps.AccountsConfig", # new
+    "whitenoise.runserver_nostatic", # new
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # new
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -121,3 +124,7 @@ USE_TZ = True
 # django_project/settings.py
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] # new
+LOGIN_REDIRECT_URL = "home" # new
+LOGOUT_REDIRECT_URL = "home" # new
+STATIC_ROOT = BASE_DIR / "staticfiles" # new
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # new
